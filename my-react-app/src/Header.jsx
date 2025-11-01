@@ -1,19 +1,20 @@
-function Header(){
+import "./Header.css";
+
+function Header() {
+    const username = "Rain";
 
     return (
-        <header className="CouseerHub" >
-            <h1>
-                CouseerHub
-            </h1>
-            <nav className="nav">
-                <ul>
-                    <li><a></a>Home</li>
-                    <li>About</li>
-                    <li>Contact</li>
-                </ul>
-            </nav>
+        <header className="header">
+            <div className="header-left">
+                <img src="/944167.png" alt="Logo" className="logo" />
+                <h1>URSmart</h1>
+            </div>
+
+            <div className="header-right">
+                <span className="username">Hi, {username} 👋</span>
+            </div>
         </header>
-    )
+    );
 }
 
-export default Header
+export default Header;

@@ -1,0 +1,56 @@
+/* General header container */
+.header {
+    display: flex;
+    justify-content: space-between; /* left and right sides */
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f8f9fa; /* light gray background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Left side (logo + title) */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Logo image */
+.logo {
+    height: 50px;
+    width: auto;
+}
+
+/* Site title */
+.site-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+/* Right side (username) */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Username text */
+.username {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #222;
+    background-color: #e9ecef;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.username:hover {
+    background-color: #dee2e6;
+    cursor: default;
+}
