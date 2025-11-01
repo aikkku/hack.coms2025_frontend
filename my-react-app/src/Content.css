@@ -1,0 +1,9 @@
+.content-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.content-block {
+    margin-top: 1rem;
+    line-height: 1.6;
+}
