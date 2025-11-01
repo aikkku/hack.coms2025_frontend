@@ -1,60 +1,80 @@
 /* General footer container */
 .footer {
     display: flex;
-    justify-content: space-between; /* left and right sections */
+    justify-content: space-between; /* spread sections horizontally */
     align-items: flex-start;
-    padding: 1.5rem 2rem;
     background-color: #f8f9fa;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem 2rem;
     margin-top: 2rem;
+    text-align: left;
     flex-wrap: wrap; /* responsive */
 }
 
-/* Left section (site info or copyright) */
-.footer-left {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+/* Left title area */
+.footer-title {
+    font-size: 1.2rem;
+    font-weight: 600;
     color: #333;
-    font-size: 0.95rem;
 }
 
-/* Right section (links or contact info) */
-.footer-right {
+/* Centered content area (Contact + People) */
+.footer-center {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1; /* make it take available space */
+}
+
+/* Each section (Contact / People) */
+.footer-section {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 0.3rem;
 }
 
-.footer-right a {
+.footer-section h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.footer-section a {
     text-decoration: none;
     color: #007bff;
     font-size: 0.95rem;
     transition: color 0.3s ease;
 }
 
-.footer-right a:hover {
+.footer-section a:hover {
     color: #0056b3;
 }
 
-/* Divider line */
-.footer-line {
-    width: 100%;
-    height: 1px;
-    background-color: #dee2e6;
-    margin: 1rem 0;
+/* Right copyright text */
+.footer-bottom {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: right;
 }
 
-/* For small screens */
+/* Responsive */
 @media (max-width: 768px) {
     .footer {
         flex-direction: column;
-        text-align: center;
         align-items: center;
+        text-align: center;
+        gap: 1rem;
     }
 
-    .footer-right {
-        align-items: center;
+    .footer-center {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .footer-bottom {
+        text-align: center;
     }
 }
