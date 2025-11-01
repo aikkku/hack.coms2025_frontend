@@ -1,0 +1,201 @@
+/* This file styles our course detail page */
+
+.course-detail {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Back button styling */
+.back-button {
+    background: none;
+    border: none;
+    color: #2563eb;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding: 8px 0;
+}
+
+.back-button:hover {
+    text-decoration: underline;
+}
+
+/* Course header styling */
+.course-header {
+    margin-bottom: 30px;
+}
+
+.course-title {
+    font-size: 2rem;
+    margin: 0 0 10px 0;
+    color: #1f2937;
+}
+
+.course-description {
+    font-size: 1.1rem;
+    color: #6b7280;
+    margin: 0 0 10px 0;
+}
+
+.course-department {
+    color: #4b5563;
+    font-weight: 500;
+}
+
+/* Filters section */
+.filters-section {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.filters-header h3 {
+    margin: 0;
+    color: #374151;
+}
+
+.clear-filters {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #374151;
+}
+
+.filter-dropdown {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Tabs styling */
+.tabs-section {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tab {
+    flex: 1;
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.tab.active {
+    background-color: #2563eb;
+    color: white;
+}
+
+/* Resources content */
+.resources-content {
+    padding: 20px;
+}
+
+.resource-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.resource-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.resource-title {
+    margin: 0;
+    color: #1f2937;
+    font-size: 1.2rem;
+}
+
+.resource-type {
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.resource-description {
+    color: #6b7280;
+    margin: 0 0 15px 0;
+}
+
+.resource-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.resource-meta span {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.resource-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.upvote-button, .download-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.upvote-button {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.download-button {
+    background: #2563eb;
+    color: white;
+}
