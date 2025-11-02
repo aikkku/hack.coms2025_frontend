@@ -1,58 +1,126 @@
 import "./Content.css";
+import { useState, useEffect } from "react";
+import { useAuth } from "./context/AuthContext";
+import { courseAPI } from "./services/api";
 
 // This function shows the list of courses on the main page
-function Content({ onCourseSelect }) { // ← Added onCourseSelect parameter
-                                       // This is our course data - you can add more courses here later
-    const courses = [
-        {
-            id: 'cs-101',
-            code: 'CS 101',
-            name: 'Introduction to Computer Science',
-            description: 'Fundamental concepts of computer science including programming, algorithms, and data structures.',
-            department: 'Computer Science',
-            credits: 4
-        },
-        {
-            id: 'cs-161',
-            code: 'CS 161',
-            name: 'Data Structures and Algorithms',
-            description: 'Advanced data structures and algorithm analysis. Learn about arrays, linked lists, trees, and sorting algorithms.',
-            department: 'Computer Science',
-            credits: 4
-        },
-        {
-            id: 'math-101',
-            code: 'MATH 101',
-            name: 'Calculus I',
-            description: 'Introduction to differential and integral calculus with applications.',
-            department: 'Mathematics',
-            credits: 3
+function Content({ onCourseSelect, searchQuery, searchResults }) {
+    const { token, isAuthenticated } = useAuth();
+    const [courses, setCourses] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
+    // Load courses when authenticated
+    useEffect(() => {
+        if (isAuthenticated && token) {
+            loadCourses();
+        } else {
+            setCourses([]);
         }
-    ];
+    }, [isAuthenticated, token]);
+
+    // Update courses when search results change
+    useEffect(() => {
+        if (searchResults && Array.isArray(searchResults)) {
+            setCourses(searchResults);
+        }
+    }, [searchResults]);
+
+    const loadCourses = async () => {
+        setLoading(true);
+        setError("");
+        
+        try {
+            const results = await courseAPI.getCourses(token);
+            setCourses(Array.isArray(results) ? results : []);
+        } catch (err) {
+            setError(err.message || "Failed to load courses");
+            setCourses([]);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Transform backend course format to frontend format
+    const transformCourse = (course) => {
+        return {
+            id: course.id,
+            code: course.course_code || course.code,
+            name: course.title || course.name,
+            description: course.description || "",
+            department: course.department || "",
+            credits: course.credits || 0,
+            instructors: course.instructors || "",
+            // Keep all original data
+            ...course
+        };
+    };
+
+    if (!isAuthenticated) {
+        return (
+            <div className="content-wrapper">
+                <h2>Available Courses</h2>
+                <p>Please login to view available courses.</p>
+            </div>
+        );
+    }
+
+    if (loading && courses.length === 0) {
+        return (
+            <div className="content-wrapper">
+                <h2>Available Courses</h2>
+                <p>Loading courses...</p>
+            </div>
+        );
+    }
+
+    if (error && courses.length === 0) {
+        return (
+            <div className="content-wrapper">
+                <h2>Available Courses</h2>
+                <p className="error-message">Error: {error}</p>
+            </div>
+        );
+    }
 
     return (
         <div className="content-wrapper">
             <h2>Available Courses</h2>
             <p>Click on any course to view resources, filters, and chat with our AI assistant.</p>
 
-            {/* Course List - replaces the fake content */}
-            <div className="course-list">
-                {courses.map(course => (
-                    <div
-                        key={course.id}
-                        className="course-item"
-                        onClick={() => onCourseSelect(course)} // ← THIS IS IMPORTANT: tells App which course was clicked
-                    >
-                        <div className="course-header">
-                            <h3 className="course-code">{course.code}</h3>
-                            <span className="credits-badge">{course.credits} credits</span>
-                        </div>
-                        <h4 className="course-name">{course.name}</h4>
-                        <p className="course-description">{course.description}</p>
-                        <p className="course-department"><strong>Department:</strong> {course.department}</p>
-                    </div>
-                ))}
-            </div>
+            {courses.length === 0 ? (
+                <p>No courses found. {searchQuery ? "Try a different search term." : "Search for courses to get started."}</p>
+            ) : (
+                <div className="course-list">
+                    {courses.map(course => {
+                        const transformed = transformCourse(course);
+                        return (
+                            <div
+                                key={transformed.id}
+                                className="course-item"
+                                onClick={() => onCourseSelect(transformed)}
+                            >
+                                <div className="course-header">
+                                    <h3 className="course-code">{transformed.code}</h3>
+                                    {transformed.credits > 0 && (
+                                        <span className="credits-badge">{transformed.credits} credits</span>
+                                    )}
+                                </div>
+                                <h4 className="course-name">{transformed.name}</h4>
+                                {transformed.description && (
+                                    <p className="course-description">{transformed.description}</p>
+                                )}
+                                {transformed.instructors && (
+                                    <p className="course-department"><strong>Instructors:</strong> {transformed.instructors}</p>
+                                )}
+                                {transformed.department && (
+                                    <p className="course-department"><strong>Department:</strong> {transformed.department}</p>
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
         </div>
     );
 }

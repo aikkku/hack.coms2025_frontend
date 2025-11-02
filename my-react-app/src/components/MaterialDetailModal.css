@@ -1,0 +1,148 @@
+.material-detail-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1500;
+}
+
+.material-detail-modal {
+    background: white;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.material-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.material-detail-header h2 {
+    margin: 0;
+    color: #1f2937;
+    font-size: 1.5rem;
+}
+
+.material-detail-header .close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.material-detail-header .close-button:hover {
+    color: #000;
+    background: #f0f0f0;
+}
+
+.material-detail-content {
+    padding: 1.5rem;
+}
+
+.material-detail-section {
+    margin-bottom: 1.5rem;
+}
+
+.material-detail-section h3 {
+    margin: 0 0 0.5rem 0;
+    color: #374151;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.material-detail-section p {
+    margin: 0;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+.material-badge {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.file-link {
+    display: inline-block;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0;
+}
+
+.file-link:hover {
+    text-decoration: underline;
+}
+
+.material-detail-meta {
+    display: flex;
+    gap: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 1.5rem;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.meta-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.meta-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.material-detail-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close-modal-button {
+    padding: 0.5rem 1.5rem;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.close-modal-button:hover {
+    background: #357abd;
+}
+

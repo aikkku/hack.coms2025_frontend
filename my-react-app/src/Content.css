@@ -96,3 +96,11 @@
         font-size: 1.25rem;
     }
 }
+
+.error-message {
+    color: #dc3545;
+    padding: 1rem;
+    background: #fee;
+    border-radius: 4px;
+    margin-top: 1rem;
+}

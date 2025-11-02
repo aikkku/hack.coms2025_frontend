@@ -35,6 +35,18 @@
     transition: background-color 0.3s ease;
 }
 
-.search-button:hover {
+.search-button:hover:not(:disabled) {
     background-color: #0056b3;
+}
+
+.search-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.search-error {
+    color: #dc3545;
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 0.9rem;
 }
