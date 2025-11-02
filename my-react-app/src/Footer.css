@@ -1,21 +1,24 @@
+/* Footer.css - Updated with Figma Design System */
+
 /* General footer container */
 .footer {
     display: flex;
-    justify-content: space-between; /* spread sections horizontally */
+    justify-content: space-between;
     align-items: flex-start;
-    background-color: #f8f9fa;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem 2rem;
-    margin-top: 2rem;
+    background-color: var(--background);
+    color: var(--foreground);
+    border-top: 1px solid var(--border);
+    padding: 2rem 3rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
     text-align: left;
-    flex-wrap: wrap; /* responsive */
 }
 
-/* Left title area */
 .footer-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #333;
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    color: var(--primary);
+    line-height: 1.5;
 }
 
 /* Centered content area (Contact + People) */
@@ -24,40 +27,45 @@
     gap: 3rem;
     justify-content: center;
     align-items: flex-start;
-    flex: 1; /* make it take available space */
+    flex: 1;
 }
 
 /* Each section (Contact / People) */
 .footer-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
+    align-items: flex-start;
+    gap: 0.5rem;
 }
 
 .footer-section h4 {
     margin-bottom: 0.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #222;
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--foreground);
+    line-height: 1.5;
 }
 
 .footer-section a {
     text-decoration: none;
-    color: #007bff;
-    font-size: 0.95rem;
-    transition: color 0.3s ease;
+    color: var(--primary);
+    font-weight: var(--font-weight-normal);
+    font-size: var(--text-base);
+    transition: color 0.2s ease;
+    line-height: 1.5;
 }
 
 .footer-section a:hover {
-    color: #0056b3;
+    color: var(--secondary-foreground);
 }
 
 /* Right copyright text */
 .footer-bottom {
-    font-size: 0.9rem;
-    color: #666;
+    font-size: var(--text-sm);
+    color: var(--muted-foreground);
     text-align: right;
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
 }
 
 /* Responsive */
@@ -66,12 +74,17 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 1rem;
+        gap: 1.5rem;
+        padding: 1.5rem 1rem;
     }
 
     .footer-center {
         flex-direction: column;
         gap: 1.5rem;
+    }
+
+    .footer-section {
+        align-items: center;
     }
 
     .footer-bottom {

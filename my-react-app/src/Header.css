@@ -1,11 +1,12 @@
-/* General header container */
+/* Header.css - Updated with Figma Design System */
+
 .header {
     display: flex;
-    justify-content: space-between; /* left and right sides */
+    justify-content: space-between;
     align-items: center;
-    padding: 0.2rem 2rem;
-    background-color: #f8f9fa; /* light gray background */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+    background-color: var(--background);
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -20,41 +21,27 @@
 
 /* Logo image */
 .logo {
-    height: 50px;
+    height: 40px;
     width: auto;
 }
 
 /* Site title */
 .site-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #333;
+    font-size: 1.5rem; /* text-xl equivalent */
+    font-weight: var(--font-weight-medium);
+    color: var(--foreground);
     margin: 0;
+    line-height: 1.5;
 }
 
-/* Right side (username) */
+/* Right side (user info) */
 .header-right {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
-/* Username text */
-.username {
-    font-weight: 500;
-    font-size: 1rem;
-    color: #222;
-    background-color: #e9ecef;
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
-    transition: background-color 0.3s ease;
-}
-
-.username:hover {
-    background-color: #dee2e6;
-    cursor: default;
-}
-
+/* User info container */
 .user-info {
     display: flex;
     flex-direction: column;
@@ -62,60 +49,92 @@
     gap: 0.25rem;
 }
 
+/* Username text */
+.username {
+    font-weight: var(--font-weight-medium);
+    font-size: 1rem; /* text-base equivalent */
+    color: var(--foreground);
+    line-height: 1.5;
+}
+
+/* Karma display */
 .karma-display {
     display: flex;
     gap: 0.5rem;
     align-items: center;
-    font-size: 0.85rem;
+    font-size: 0.875rem; /* text-sm equivalent */
 }
 
 .karma-points {
-    background-color: #e9ecef;
-    color: #495057;
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
     padding: 0.25rem 0.75rem;
-    border-radius: 12px;
-    font-weight: 500;
+    border-radius: var(--radius);
+    font-weight: var(--font-weight-medium);
 }
 
 .user-level {
-    background-color: #dbeafe;
-    color: #1e40af;
+    background-color: var(--accent);
+    color: var(--accent-foreground);
     padding: 0.25rem 0.75rem;
-    border-radius: 12px;
-    font-weight: 600;
+    border-radius: var(--radius);
+    font-weight: var(--font-weight-medium);
     font-size: 0.8rem;
 }
 
 /* Login button */
 .login-button {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 1rem;
-    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--radius);
+    font-size: 1rem; /* text-base equivalent */
+    font-weight: var(--font-weight-medium);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.2s ease;
+    line-height: 1.5;
 }
 
 .login-button:hover {
-    background-color: #0056b3;
+    opacity: 0.9;
+    transform: translateY(-1px);
 }
 
 /* Logout button */
 .logout-button {
-    background-color: #dc3545;
-    color: white;
+    background-color: var(--destructive);
+    color: var(--destructive-foreground);
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 1rem;
-    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--radius);
+    font-size: 1rem; /* text-base equivalent */
+    font-weight: var(--font-weight-medium);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.2s ease;
+    line-height: 1.5;
 }
 
 .logout-button:hover {
-    background-color: #c82333;
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .header {
+        padding: 0.75rem 1rem;
+    }
+
+    .site-title {
+        font-size: 1.25rem;
+    }
+
+    .header-right {
+        gap: 0.75rem;
+    }
+
+    .user-info {
+        align-items: flex-start;
+    }
 }
