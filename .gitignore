@@ -17,11 +17,6 @@ coverage/
 *.lcov
 .nyc_output
 
-# Production
-dist/
-dist-ssr/
-build/
-*.local
 
 # Environment variables
 .env

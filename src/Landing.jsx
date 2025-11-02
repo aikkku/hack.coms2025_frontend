@@ -11,12 +11,12 @@ export default function Landing({ onContinue }) {
             {/* LEFT SIDE */}
             <div className="landing-left">
                 <h1>Welcome to UR Smart</h1>
-                <p>Discover, track, and explore courses with a clean interface.</p>
+                <p>UR Smart, Together We Learn Smarter.</p>
                 <button
                     className="signup-button"
                     onClick={() => setShowAuthModal(true)}
                 >
-                    Sign Up
+                    Log in
                 </button>
             </div>
 
