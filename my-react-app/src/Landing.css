@@ -1,26 +1,90 @@
+/* Full-screen modern split layout */
 .landing-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Left side – text and button */
+.landing-left {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #e3eeff, #c5d8ff);
-    text-align: center;
-    color: #333;
+    align-items: flex-start;
+    padding-left: 8vw;
+    color: #1b1b1b;
+    z-index: 2;
 }
 
+.landing-left h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #2b46ff, #1f91ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.landing-left p {
+    font-size: 1.25rem;
+    max-width: 500px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Fancy sign-up button */
 .signup-button {
-    margin-top: 30px;
-    padding: 12px 28px;
+    padding: 14px 36px;
     font-size: 1.2rem;
-    background-color: #3366ff;
+    font-weight: 600;
+    background: linear-gradient(90deg, #2b46ff, #1f91ff);
     border: none;
-    border-radius: 8px;
+    border-radius: 50px;
     color: white;
     cursor: pointer;
-    transition: 0.3s;
+    box-shadow: 0 8px 20px rgba(50, 80, 255, 0.3);
+    transition: all 0.3s ease;
 }
 
 .signup-button:hover {
-    background-color: #254eda;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(50, 80, 255, 0.4);
+}
+
+/* Right side – image or decorative gradient */
+.landing-right {
+    flex: 1;
+    height: 100%;
+    background: url("https://images.unsplash.com/photo-1522204507491-51b8b22f66d1?auto=format&fit=crop&w=1200&q=80")
+    center/cover no-repeat;
+    filter: brightness(0.9);
+    clip-path: polygon(15% 0%, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+    .landing-container {
+        flex-direction: column;
+    }
+
+    .landing-right {
+        display: none;
+    }
+
+    .landing-left {
+        align-items: center;
+        text-align: center;
+        padding-left: 0;
+    }
+
+    .landing-left h1 {
+        font-size: 2.5rem;
+    }
 }

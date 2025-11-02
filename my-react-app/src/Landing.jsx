@@ -1,6 +1,6 @@
 // Landing.jsx
 import React, { useState } from "react";
-import { AuthModal } from "./components/AuthModal.jsx"; // adjust path
+import { AuthModal } from "./components/AuthModal.jsx"; // your path
 import "./Landing.css";
 
 export default function Landing({ onContinue }) {
@@ -8,24 +8,34 @@ export default function Landing({ onContinue }) {
 
     return (
         <div className="landing-container">
-            <h1>Welcome to Course Finder</h1>
-            <p>Discover and explore all available courses easily.</p>
+            {/* LEFT SIDE */}
+            <div className="landing-left">
+                <h1>Welcome to UR Smart</h1>
+                <p>Discover, track, and explore courses with a clean interface.</p>
+                <button
+                    className="signup-button"
+                    onClick={() => setShowAuthModal(true)}
+                >
+                    Sign Up
+                </button>
+            </div>
 
-            <button
-                className="signup-button"
-                onClick={() => setShowAuthModal(true)}
-            >
-                Sign Up
-            </button>
+            {/* RIGHT SIDE (decoration / hero) */}
+            {/*<div className="landing-right">
+                <div className="glass-card">
+                    <h2>Browse classes faster</h2>
+                    <p>Smart search · Filters · Saved courses</p>
+                </div>
+                <div className="circle c1"></div>
+                <div className="circle c2"></div>
+            </div> */}
 
             {showAuthModal && (
                 <AuthModal
-                    // ❗ just close modal
                     onClose={() => setShowAuthModal(false)}
-                    // ✅ only when auth success → go to main app
                     onSuccess={() => {
                         setShowAuthModal(false);
-                        onContinue(); // <- this sets showLanding(false) in App
+                        onContinue(); // go to main app
                     }}
                 />
             )}
