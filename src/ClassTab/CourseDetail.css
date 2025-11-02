@@ -59,6 +59,7 @@
 
     .material-tile-description {
         font-size: 0.9rem;
+        line-clamp: 2;
         -webkit-line-clamp: 2;
         min-height: 2.6em;
     }
@@ -326,6 +327,7 @@
     margin: 10px 0;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
