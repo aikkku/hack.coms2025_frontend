@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }) => {
       fetchUserInfo();
     } else {
       setUser(null);
+
     }
   }, [token]);
 
