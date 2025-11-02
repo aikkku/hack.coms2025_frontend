@@ -1,0 +1,26 @@
+.landing-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #e3eeff, #c5d8ff);
+    text-align: center;
+    color: #333;
+}
+
+.signup-button {
+    margin-top: 30px;
+    padding: 12px 28px;
+    font-size: 1.2rem;
+    background-color: #3366ff;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.signup-button:hover {
+    background-color: #254eda;
+}
