@@ -145,3 +145,50 @@
     opacity: 0.6;
     cursor: not-allowed;
 }
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .material-form {
+        padding: 1.5rem;
+        max-width: 95%;
+    }
+
+    .material-form-header h2 {
+        font-size: 1.25rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group select {
+        padding: 0.65rem;
+        font-size: 0.95rem;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+        gap: 0.75rem;
+    }
+
+    .cancel-button,
+    .submit-button {
+        width: 100%;
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .material-form {
+        padding: 1.25rem;
+    }
+
+    .material-form-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group select {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+}

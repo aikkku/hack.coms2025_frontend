@@ -3,7 +3,7 @@ import Header from "./Header.jsx";
 import Searching from "./Searching.jsx";
 import Content from "./Content.jsx";
 import Footer from "./Footer.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CourseDetail } from "./ClassTab/CourseDetail";
 import { AuthProvider } from "./context/AuthContext";
 import Landing from "./Landing.jsx";
@@ -18,6 +18,23 @@ function App() {
         setSearchResults(results);
         setSelectedCourse(null);
     };
+
+    // Handle logo click - reset to main page without reloading
+    const handleLogoClick = () => {
+        setSelectedCourse(null);
+        setSearchResults(null);
+        // Scroll to top smoothly
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Listen for logo click events
+    useEffect(() => {
+        const handleLogoClickEvent = () => {
+            handleLogoClick();
+        };
+        window.addEventListener('logoClick', handleLogoClickEvent);
+        return () => window.removeEventListener('logoClick', handleLogoClickEvent);
+    }, []);
 
     return (
         // ✅ Wrap the whole app, including the landing page

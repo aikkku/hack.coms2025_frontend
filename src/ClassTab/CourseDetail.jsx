@@ -235,7 +235,9 @@ export function CourseDetail({ course, onBack }) {
                                                 onClick={() => setSelectedMaterial(material)}
                                             >
                                                 <div className="material-tile-header">
-                                                    <h4 className="material-tile-title">{material.title}</h4>
+                                                    <h4 className="material-tile-title" title={material.title}>
+                                                        {material.title}
+                                                    </h4>
                                                     <div className="material-tile-header-right">
                                                         <span className="material-tile-type">
                                                             {MATERIAL_TYPES[material.type] || `Type ${material.type}`}
@@ -244,39 +246,49 @@ export function CourseDetail({ course, onBack }) {
                                                             <button
                                                                 className="delete-material-button"
                                                                 onClick={(e) => handleDeleteMaterial(material, e)}
+                                                                title="Delete this material"
                                                             >
                                                                 🗑️
                                                             </button>
                                                         )}
                                                     </div>
                                                 </div>
-                                                <p className="material-tile-description">
-                                                    {material.description
-                                                        ? material.description.length > 100
-                                                            ? material.description.substring(0, 100) + '...'
-                                                            : material.description
-                                                        : 'No description'}
+                                                <p className="material-tile-description" title={material.description}>
+                                                    {material.description || 'No description'}
                                                 </p>
 
-                                                <div className="material-tile-votes">
-                                                    <button
-                                                        className="vote-button upvote"
-                                                        onClick={(e) => { e.stopPropagation(); handleUpvote(material); }}
-                                                    >
-                                                        ▲
-                                                    </button>
-                                                    <span className="vote-score">{material.score}</span>
-                                                    <button
-                                                        className="vote-button downvote"
-                                                        onClick={(e) => { e.stopPropagation(); handleDownvote(material); }}
-                                                    >
-                                                        ▼
-                                                    </button>
-                                                </div>
+                                                <div className="material-tile-footer">
+                                                    <div className="material-tile-votes">
+                                                        <button
+                                                            className="vote-button upvote"
+                                                            onClick={(e) => { e.stopPropagation(); handleUpvote(material); }}
+                                                            title="Upvote"
+                                                        >
+                                                            ▲
+                                                        </button>
+                                                        <span className="vote-score">{material.score}</span>
+                                                        <button
+                                                            className="vote-button downvote"
+                                                            onClick={(e) => { e.stopPropagation(); handleDownvote(material); }}
+                                                            title="Downvote"
+                                                        >
+                                                            ▼
+                                                        </button>
+                                                    </div>
 
-                                                {material.file_link && (
-                                                    <div className="material-tile-file">📎 File Available</div>
-                                                )}
+                                                    {material.file_link && (
+                                                        <a 
+                                                            href={material.file_link} 
+                                                            target="_blank" 
+                                                            rel="noopener noreferrer"
+                                                            className="material-tile-file-link"
+                                                            onClick={(e) => e.stopPropagation()}
+                                                            title="Open file"
+                                                        >
+                                                            📎 Open File
+                                                        </a>
+                                                    )}
+                                                </div>
                                             </div>
                                         );
                                     })

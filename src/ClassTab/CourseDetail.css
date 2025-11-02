@@ -8,6 +8,159 @@
     font-family: 'Inter', system-ui, sans-serif;
 }
 
+/* Mobile Responsive - Course Detail */
+@media (max-width: 768px) {
+    .course-detail {
+        padding: 20px 16px;
+    }
+
+    .course-title {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+
+    .course-description {
+        font-size: 0.95rem;
+    }
+
+    .course-department {
+        font-size: 0.85rem;
+    }
+
+    .back-button {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+
+    .tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tab {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .materials-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .material-tile {
+        padding: 12px;
+    }
+
+    .material-tile-title {
+        font-size: 1rem;
+    }
+
+    .material-tile-description {
+        font-size: 0.9rem;
+        -webkit-line-clamp: 2;
+        min-height: 2.6em;
+    }
+
+    .material-tile-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .material-tile-votes {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .material-tile-file-link {
+        width: 100%;
+        justify-content: center;
+        padding: 6px 12px;
+    }
+
+    .add-material-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    .chat-content {
+        margin-top: 20px;
+    }
+
+    .chat-materials-selection {
+        padding: 15px;
+    }
+
+    .chat-materials-selection h3 {
+        font-size: 1rem;
+    }
+
+    .material-checkboxes {
+        flex-direction: column;
+    }
+
+    .material-checkbox {
+        width: 100%;
+    }
+
+    .chat-interface {
+        height: 50vh;
+        margin-top: 20px;
+    }
+
+    .chat-messages {
+        padding: 15px;
+        height: 60vh;
+    }
+
+    .chat-message-content {
+        max-width: 85%;
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+
+    .chat-input-container {
+        padding: 10px;
+        flex-direction: column;
+    }
+
+    .chat-input {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    .chat-send-button {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 1rem;
+        min-height: 44px; /* Minimum touch target size for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .course-detail {
+        padding: 16px 12px;
+    }
+
+    .course-title {
+        font-size: 1.25rem;
+    }
+
+    .vote-button {
+        font-size: 1.2rem;
+        padding: 6px 10px;
+        min-width: 36px;
+    }
+
+    .vote-score {
+        font-size: 1rem;
+    }
+}
+
 /* Back button */
 .back-button {
     background: none;
@@ -138,6 +291,11 @@
     font-weight: 600;
     font-size: 1.05rem;
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0; /* Important for ellipsis to work */
 }
 .material-tile-header-right {
     display: flex;
@@ -166,7 +324,47 @@
     font-size: 0.95rem;
     color: #444;
     margin: 10px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+    min-height: 3.9em; /* Approximate height for 3 lines */
 }
+
+.material-tile-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.material-tile-votes {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.material-tile-file-link {
+    font-size: 0.9rem;
+    color: #3366ff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.material-tile-file-link:hover {
+    background: #f0f4ff;
+    color: #254eda;
+}
+
 .material-tile-file {
     font-size: 0.85rem;
     color: #111;
@@ -175,32 +373,39 @@
     align-items: center;
     gap: 4px;
 }
-.material-tile-votes {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-top: 10px;
-}
 .vote-button {
     border: none;
-    background: none;
+    background: #f0f0f0;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.4rem;
     line-height: 1;
-    padding: 4px;
-    transition: transform 0.15s ease;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .vote-button.upvote:hover {
+    background: #e8f5e9;
     color: #28a745;
     transform: translateY(-2px);
 }
 .vote-button.downvote:hover {
+    background: #ffebee;
     color: #d93025;
     transform: translateY(2px);
+}
+.vote-button:active {
+    transform: scale(0.95);
 }
 .vote-score {
     font-weight: 600;
     color: #333;
+    font-size: 1.1rem;
+    min-width: 30px;
+    text-align: center;
 }
 
 /* === No Materials === */
@@ -266,7 +471,7 @@
 .chat-placeholder {
     text-align: center;
     color: #888;
-    margin-top: 140px;
+    margin-top: 10vh;
     font-size: 0.95rem;
 }
 

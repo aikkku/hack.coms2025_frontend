@@ -103,12 +103,64 @@
         padding: 1rem;
     }
 
+    .content-wrapper h2 {
+        font-size: 1.25rem;
+    }
+
+    .course-list {
+        gap: 1rem;
+    }
+
+    .course-item {
+        padding: 1rem;
+    }
+
     .course-header {
         flex-direction: column;
         gap: 0.5rem;
+        align-items: flex-start;
     }
 
     .course-code {
         font-size: 1.125rem;
+    }
+
+    .course-name {
+        font-size: 1rem;
+    }
+
+    .course-description {
+        font-size: 0.9rem;
+    }
+
+    .course-department {
+        font-size: 0.8rem;
+    }
+
+    .credits-badge {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-wrapper {
+        padding: 0.75rem;
+    }
+
+    .content-wrapper h2 {
+        font-size: 1.1rem;
+    }
+
+    .course-item {
+        padding: 0.75rem;
+    }
+
+    .course-code {
+        font-size: 1rem;
+    }
+
+    .course-name {
+        font-size: 0.95rem;
     }
 }

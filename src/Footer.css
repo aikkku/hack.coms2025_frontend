@@ -78,16 +78,49 @@
         padding: 1.5rem 1rem;
     }
 
+    .footer-title {
+        text-align: center;
+    }
+
     .footer-center {
         flex-direction: column;
         gap: 1.5rem;
+        width: 100%;
+        align-items: center;
     }
 
     .footer-section {
         align-items: center;
+        text-align: center;
+        width: 100%;
     }
 
     .footer-bottom {
         text-align: center;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 1.25rem 0.75rem;
+        gap: 1.25rem;
+    }
+
+    .footer-title {
+        font-size: 1rem;
+    }
+
+    .footer-section h4 {
+        font-size: 0.9rem;
+    }
+
+    .footer-section a {
+        font-size: 0.9rem;
+    }
+
+    .footer-bottom {
+        font-size: 0.8rem;
     }
 }
