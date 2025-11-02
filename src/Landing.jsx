@@ -20,16 +20,6 @@ export default function Landing({ onContinue }) {
                 </button>
             </div>
 
-            {/* RIGHT SIDE (decoration / hero) */}
-            {/*<div className="landing-right">
-                <div className="glass-card">
-                    <h2>Browse classes faster</h2>
-                    <p>Smart search · Filters · Saved courses</p>
-                </div>
-                <div className="circle c1"></div>
-                <div className="circle c2"></div>
-            </div> */}
-
             {showAuthModal && (
                 <AuthModal
                     onClose={() => setShowAuthModal(false)}
