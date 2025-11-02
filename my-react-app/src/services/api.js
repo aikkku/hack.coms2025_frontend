@@ -1,6 +1,13 @@
 // API service for backend connections
 const API_BASE_URL = 'https://unresponding-nettie-nonadaptive.ngrok-free.dev';
 
+// Global logout callback - will be set by AuthContext
+let globalLogoutCallback = null;
+
+export const setGlobalLogoutCallback = (callback) => {
+  globalLogoutCallback = callback;
+};
+
 // Helper function to get headers with auth token
 const getHeaders = (token, contentType = 'application/json') => {
   const headers = {
@@ -18,6 +25,19 @@ const getHeaders = (token, contentType = 'application/json') => {
   return headers;
 };
 
+// Helper function to handle API responses and check for auth errors
+const handleResponse = async (response) => {
+  // Check for 401 Unauthorized (session expired)
+  if (response.status === 401) {
+    if (globalLogoutCallback) {
+      globalLogoutCallback();
+    }
+    throw new Error('Session expired. Please login again.');
+  }
+  
+  return response;
+};
+
 // Authentication API
 export const authAPI = {
   login: async (email, password) => {
@@ -33,12 +53,14 @@ export const authAPI = {
       body: formData
     });
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ detail: 'Login failed' }));
-      throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+    const checkedResponse = await handleResponse(response);
+
+    if (!checkedResponse.ok) {
+      const errorData = await checkedResponse.json().catch(() => ({ detail: 'Login failed' }));
+      throw new Error(errorData.detail || `HTTP error! status: ${checkedResponse.status}`);
     }
 
-    return await response.json();
+    return await checkedResponse.json();
   },
 
   register: async (name, email, password) => {
@@ -52,12 +74,14 @@ export const authAPI = {
       })
     });
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ detail: 'Registration failed' }));
-      throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+    const checkedResponse = await handleResponse(response);
+
+    if (!checkedResponse.ok) {
+      const errorData = await checkedResponse.json().catch(() => ({ detail: 'Registration failed' }));
+      throw new Error(errorData.detail || `HTTP error! status: ${checkedResponse.status}`);
     }
 
-    return await response.json();
+    return await checkedResponse.json();
   }
 };
 
@@ -72,12 +96,14 @@ export const courseAPI = {
       headers: getHeaders(token)
     });
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ detail: 'Search failed' }));
-      throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+    const checkedResponse = await handleResponse(response);
+
+    if (!checkedResponse.ok) {
+      const errorData = await checkedResponse.json().catch(() => ({ detail: 'Search failed' }));
+      throw new Error(errorData.detail || `HTTP error! status: ${checkedResponse.status}`);
     }
 
-    return await response.json();
+    return await checkedResponse.json();
   },
 
   getCourses: async (token) => {
@@ -95,12 +121,14 @@ export const materialAPI = {
       body: JSON.stringify(materialData)
     });
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ detail: 'Failed to create material' }));
-      throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+    const checkedResponse = await handleResponse(response);
+
+    if (!checkedResponse.ok) {
+      const errorData = await checkedResponse.json().catch(() => ({ detail: 'Failed to create material' }));
+      throw new Error(errorData.detail || `HTTP error! status: ${checkedResponse.status}`);
     }
 
-    return await response.json();
+    return await checkedResponse.json();
   },
 
   getMaterialsByCourse: async (token, courseId) => {
@@ -108,12 +136,14 @@ export const materialAPI = {
       headers: getHeaders(token)
     });
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ detail: 'Failed to load materials' }));
-      throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+    const checkedResponse = await handleResponse(response);
+
+    if (!checkedResponse.ok) {
+      const errorData = await checkedResponse.json().catch(() => ({ detail: 'Failed to load materials' }));
+      throw new Error(errorData.detail || `HTTP error! status: ${checkedResponse.status}`);
     }
 
-    return await response.json();
+    return await checkedResponse.json();
   },
 
   getMaterial: async (token, materialId) => {
@@ -121,12 +151,14 @@ export const materialAPI = {
       headers: getHeaders(token)
     });
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ detail: 'Failed to load material' }));
-      throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+    const checkedResponse = await handleResponse(response);
+
+    if (!checkedResponse.ok) {
+      const errorData = await checkedResponse.json().catch(() => ({ detail: 'Failed to load material' }));
+      throw new Error(errorData.detail || `HTTP error! status: ${checkedResponse.status}`);
     }
 
-    return await response.json();
+    return await checkedResponse.json();
   },
 
   updateMaterialScore: async (token, materialId, materialData) => {
@@ -136,12 +168,14 @@ export const materialAPI = {
       body: JSON.stringify(materialData)
     });
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ detail: 'Failed to update score' }));
-      throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+    const checkedResponse = await handleResponse(response);
+
+    if (!checkedResponse.ok) {
+      const errorData = await checkedResponse.json().catch(() => ({ detail: 'Failed to update score' }));
+      throw new Error(errorData.detail || `HTTP error! status: ${checkedResponse.status}`);
     }
 
-    return await response.json();
+    return await checkedResponse.json();
   },
 
   uploadFile: async (token, materialId, file) => {
@@ -160,12 +194,30 @@ export const materialAPI = {
       body: formData
     });
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ detail: 'Upload failed' }));
-      throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+    const checkedResponse = await handleResponse(response);
+
+    if (!checkedResponse.ok) {
+      const errorData = await checkedResponse.json().catch(() => ({ detail: 'Upload failed' }));
+      throw new Error(errorData.detail || `HTTP error! status: ${checkedResponse.status}`);
     }
 
-    return await response.json();
+    return await checkedResponse.json();
+  },
+
+  deleteMaterial: async (token, materialId) => {
+    const response = await fetch(`${API_BASE_URL}/material/${materialId}`, {
+      method: 'DELETE',
+      headers: getHeaders(token)
+    });
+
+    const checkedResponse = await handleResponse(response);
+
+    if (!checkedResponse.ok) {
+      const errorData = await checkedResponse.json().catch(() => ({ detail: 'Delete failed' }));
+      throw new Error(errorData.detail || `HTTP error! status: ${checkedResponse.status}`);
+    }
+
+    return true; // 204 No Content
   }
 };
 
@@ -176,12 +228,14 @@ export const userAPI = {
       headers: getHeaders(token)
     });
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ detail: 'Failed to get user info' }));
-      throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+    const checkedResponse = await handleResponse(response);
+
+    if (!checkedResponse.ok) {
+      const errorData = await checkedResponse.json().catch(() => ({ detail: 'Failed to get user info' }));
+      throw new Error(errorData.detail || `HTTP error! status: ${checkedResponse.status}`);
     }
 
-    return await response.json();
+    return await checkedResponse.json();
   }
 };
 
@@ -198,12 +252,15 @@ export const chatbotAPI = {
       })
     });
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ detail: 'Chat failed' }));
-      throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+    const checkedResponse = await handleResponse(response);
+
+    if (!checkedResponse.ok) {
+      const errorData = await checkedResponse.json().catch(() => ({ detail: 'Chat failed' }));
+      throw new Error(errorData.detail || `HTTP error! status: ${checkedResponse.status}`);
     }
 
-    return await response.json();
+    return await checkedResponse.json();
   }
 };
+
 

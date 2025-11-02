@@ -214,6 +214,12 @@
     gap: 0.5rem;
 }
 
+.material-tile-header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .material-tile-title {
     margin: 0;
     color: #1f2937;
@@ -526,4 +532,22 @@
 .chat-send-button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+/* Delete Material Button */
+.delete-material-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    opacity: 0.6;
+}
+
+.delete-material-button:hover {
+    opacity: 1;
+    background: #fee;
+    transform: scale(1.1);
 }

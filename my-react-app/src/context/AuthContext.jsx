@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { authAPI, userAPI } from '../services/api';
+import { authAPI, userAPI, setGlobalLogoutCallback } from '../services/api';
 
 const AuthContext = createContext(null);
 
@@ -101,6 +101,14 @@ export const AuthProvider = ({ children }) => {
     // Expose function to manually refresh user info (e.g., after karma update)
     fetchUserInfo();
   };
+
+  // Set up global logout callback for API service (after logout is defined)
+  useEffect(() => {
+    setGlobalLogoutCallback(logout);
+    return () => {
+      setGlobalLogoutCallback(null);
+    };
+  }, []); // Empty deps - logout function reference is stable
 
   const value = {
     token,

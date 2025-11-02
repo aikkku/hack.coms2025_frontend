@@ -33,7 +33,7 @@ const MATERIAL_TYPES = {
  * Main component for viewing course details, materials, and chatbot
  */
 export function CourseDetail({ course, onBack }) {
-    const { token, isAuthenticated, refreshUser } = useAuth();
+    const { token, isAuthenticated, refreshUser, user } = useAuth();
     const [activeTab, setActiveTab] = useState('resources');
     const [materials, setMaterials] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -75,6 +75,25 @@ export function CourseDetail({ course, onBack }) {
             setMaterials([]);
         } finally {
             setLoading(false);
+        }
+    };
+
+    /**
+     * Handle material deletion
+     */
+    const handleDeleteMaterial = async (material, e) => {
+        e.stopPropagation(); // Prevent opening material modal
+        
+        if (!window.confirm(`Are you sure you want to delete "${material.title}"?`)) {
+            return;
+        }
+
+        try {
+            await materialAPI.deleteMaterial(token, material.id);
+            // Reload materials after deletion
+            await loadMaterials();
+        } catch (err) {
+            alert(`Failed to delete material: ${err.message}`);
         }
     };
 
@@ -275,58 +294,72 @@ export function CourseDetail({ course, onBack }) {
                                 {materials.length === 0 ? (
                                     <p className="no-materials">No materials found. Be the first to add one!</p>
                                 ) : (
-                                    materials.map(material => (
-                                        <div 
-                                            key={material.id} 
-                                            className="material-tile"
-                                            onClick={() => setSelectedMaterial(material)}
-                                        >
-                                            <div className="material-tile-header">
-                                                <h4 className="material-tile-title">{material.title}</h4>
-                                                <span className="material-tile-type">
-                                                    {MATERIAL_TYPES[material.type] || `Type ${material.type}`}
-                                                </span>
-                                            </div>
-                                            <p className="material-tile-description">
-                                                {material.description ? 
-                                                    (material.description.length > 100 
-                                                        ? material.description.substring(0, 100) + '...' 
-                                                        : material.description)
-                                                    : 'No description'}
-                                            </p>
-                                            
-                                            {/* Reddit-style Vote Buttons */}
-                                            <div className="material-tile-votes">
-                                                <button
-                                                    className="vote-button upvote"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        handleUpvote(material);
-                                                    }}
-                                                    title="Upvote"
-                                                >
-                                                    ▲
-                                                </button>
-                                                <span className="vote-score">{material.score}</span>
-                                                <button
-                                                    className="vote-button downvote"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        handleDownvote(material);
-                                                    }}
-                                                    title="Downvote"
-                                                >
-                                                    ▼
-                                                </button>
-                                            </div>
-
-                                            {material.file_link && (
-                                                <div className="material-tile-file">
-                                                    📎 File Available
+                                    materials.map(material => {
+                                        const isOwner = user && material.user_id === user.id;
+                                        return (
+                                            <div 
+                                                key={material.id} 
+                                                className="material-tile"
+                                                onClick={() => setSelectedMaterial(material)}
+                                            >
+                                                <div className="material-tile-header">
+                                                    <h4 className="material-tile-title">{material.title}</h4>
+                                                    <div className="material-tile-header-right">
+                                                        <span className="material-tile-type">
+                                                            {MATERIAL_TYPES[material.type] || `Type ${material.type}`}
+                                                        </span>
+                                                        {isOwner && (
+                                                            <button
+                                                                className="delete-material-button"
+                                                                onClick={(e) => handleDeleteMaterial(material, e)}
+                                                                title="Delete this material"
+                                                            >
+                                                                🗑️
+                                                            </button>
+                                                        )}
+                                                    </div>
                                                 </div>
-                                            )}
-                                        </div>
-                                    ))
+                                                <p className="material-tile-description">
+                                                    {material.description ? 
+                                                        (material.description.length > 100 
+                                                            ? material.description.substring(0, 100) + '...' 
+                                                            : material.description)
+                                                        : 'No description'}
+                                                </p>
+                                                
+                                                {/* Reddit-style Vote Buttons */}
+                                                <div className="material-tile-votes">
+                                                    <button
+                                                        className="vote-button upvote"
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            handleUpvote(material);
+                                                        }}
+                                                        title="Upvote"
+                                                    >
+                                                        ▲
+                                                    </button>
+                                                    <span className="vote-score">{material.score}</span>
+                                                    <button
+                                                        className="vote-button downvote"
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            handleDownvote(material);
+                                                        }}
+                                                        title="Downvote"
+                                                    >
+                                                        ▼
+                                                    </button>
+                                                </div>
+
+                                                {material.file_link && (
+                                                    <div className="material-tile-file">
+                                                        📎 File Available
+                                                    </div>
+                                                )}
+                                            </div>
+                                        );
+                                    })
                                 )}
                             </div>
                         )}
