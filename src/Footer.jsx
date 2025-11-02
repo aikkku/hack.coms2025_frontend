@@ -8,21 +8,20 @@ function Footer() {
             <div className="footer-center">
                 <div className="footer-section">
                     <h4>Contact</h4>
-                    <a href="mxiia8@u.rochester.edu">mxiia8@u.rochester.edu</a>
+                    <a href="/">feedback@ursmart.tech</a>
                 </div>
 
                 <div className="footer-section">
                     <h4>People</h4>
-                    <a href="#rain">Rain Xia</a>
-                    <a href="#earvin">Earvin Chen</a>
-                    <a href="#asilbek ">Asilbek Ismatilloev</a>
-                    <a href="#david ">David Yen</a>
-
+                    <a href="https://asilbek.co" target="_blank" rel="noopener noreferrer">Asilbek Ismatilloev</a>
+                    <a href="https://www.linkedin.com/in/mohanxia/" target="_blank" rel="noopener noreferrer">Rain Xia</a>
+                    <a href="https://www.linkedin.com/in/earvin-chen/" target="_blank" rel="noopener noreferrer">Earvin Chen</a>
+                    <a href="https://www.linkedin.com/in/david-yen66/" target="_blank" rel="noopener noreferrer">David Yen</a>
                 </div>
             </div>
 
             <div className="footer-bottom">
-                © 2025 University of Rochester. All rights reserved.
+                © 2025 UR Smart. All rights reserved.
             </div>
         </footer>
     );
