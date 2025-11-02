@@ -254,12 +254,12 @@
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     overflow: hidden;
+    height:40vh;
 }
 
 .chat-messages {
     flex: 1;
     padding: 20px;
-    height: 400px;
     overflow-y: auto;
     background: #fff;
 }
@@ -288,9 +288,18 @@
     max-width: 65%;
     line-height: 1.4;
 }
-.chat-message.user .chat-message-content {
+.chat-message.user .chat-message-content{
     background: #3366ff;
     color: #fff;
+}
+
+.chat-message-content p {
+    margin: 0;
+}
+
+.chat-message.user .chat-message-content p{
+    color: #fff;
+
 }
 .chat-input-container {
     display: flex;

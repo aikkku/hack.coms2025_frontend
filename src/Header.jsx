@@ -12,8 +12,8 @@ function Header() {
         <>
             <header className="header">
                 <div className="header-left">
-                    <img src="/944167.png" alt="Logo" className="logo" />
-                    <h1>URSmart</h1>
+                    <img src="/Duck.png" alt="Logo" className="logo" />
+                    <h1>UR Smart</h1>
                 </div>
 
                 <div className="header-right">
